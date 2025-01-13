@@ -1,5 +1,14 @@
 Test change
 
+% docker compose up
+% docker compose down --volumes
+% docker compose run --rm app sh -c "python manage.py createsuperuser"
+
+% docker compose -f docker-compose-deploy.yml build
+% docker compose -f docker-compose-deploy.yml up             
+% docker compose -f docker-compose-deploy.yml down --volumes
+% docker compose -f docker-compose-deploy.yml run --rm app sh -c "python manage.py createsuperuser"
+
 <div align="center">
     <a href="https://londonappdeveloper.com" target="_blank">
         <img src="https://londonappdeveloper.com/wp-content/uploads/2024/11/banner.svg" alt="Banner image" />
