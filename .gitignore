@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# terraform files
+.terraformrc
+.terraform.rc
+
+.DS.Store
