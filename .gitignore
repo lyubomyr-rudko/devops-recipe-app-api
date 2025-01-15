@@ -129,8 +129,8 @@ dmypy.json
 .pyre/
 
 # terraform files
+.terraform
 .terraformrc
 .terraform.rc
 
 .DS.Store
-bkp-.terraform
