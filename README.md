@@ -1,5 +1,41 @@
 Test change
 
+% docker compose up
+% docker compose down --volumes
+% docker compose run --rm app sh -c "python manage.py createsuperuser"
+
+% docker compose -f docker-compose-deploy.yml build
+% docker compose -f docker-compose-deploy.yml up             
+% docker compose -f docker-compose-deploy.yml down --volumes
+% docker compose -f docker-compose-deploy.yml run --rm app sh -c "python manage.py createsuperuser"
+
+
+s3: lrudko-devops-recipe-app-tf-state
+dynamodb: devops-recipe-app-tf-lock
+
+
+lrudko@NB01SHS043 infra % docker compose run --rm terraform -chdir=setup init
+lrudko@NB01SHS043 infra % docker compose run --rm terraform -chdir=setup fmt 
+lrudko@NB01SHS043 infra % docker compose run --rm terraform -chdir=setup validate
+
+lrudko@NB01SHS043 infra % docker compose run --rm terraform -chdir=deploy init
+lrudko@NB01SHS043 infra % docker compose run --rm terraform -chdir=deploy fmt 
+lrudko@NB01SHS043 infra % docker compose run --rm terraform -chdir=deploy validate
+
+% docker compose run --rm \
+  -e AWS_PROFILE=AdministratorAccess-183295421958 \
+  -e AWS_REGION=eu-north-1 \
+  -v ~/.aws:/root/.aws:ro \
+  terraform -chdir=setup apply
+
+  docker compose run --rm \
+  -e AWS_PROFILE=AdministratorAccess-183295421958 \
+  -e AWS_REGION=eu-north-1 \
+  -v ~/.aws:/root/.aws:ro \
+  terraform -chdir=setup output
+
+% z7Zu$AJVuH@Bv7c
+
 <div align="center">
     <a href="https://londonappdeveloper.com" target="_blank">
         <img src="https://londonappdeveloper.com/wp-content/uploads/2024/11/banner.svg" alt="Banner image" />
