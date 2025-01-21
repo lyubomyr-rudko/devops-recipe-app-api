@@ -34,7 +34,7 @@ lrudko@NB01SHS043 infra % docker compose run --rm terraform -chdir=deploy valida
   -v ~/.aws:/root/.aws:ro \
   terraform -chdir=setup output
 
-% z7Zu$AJVuH@Bv7c
+test
 
 <div align="center">
     <a href="https://londonappdeveloper.com" target="_blank">
