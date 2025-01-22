@@ -22,6 +22,8 @@ lrudko@NB01SHS043 infra % docker compose run --rm terraform -chdir=deploy init
 lrudko@NB01SHS043 infra % docker compose run --rm terraform -chdir=deploy fmt 
 lrudko@NB01SHS043 infra % docker compose run --rm terraform -chdir=deploy validate
 
+aws s3 ls --profile AdministratorAccess-183295421958
+
 % docker compose run --rm \
   -e AWS_PROFILE=AdministratorAccess-183295421958 \
   -e AWS_REGION=eu-north-1 \
@@ -34,7 +36,7 @@ lrudko@NB01SHS043 infra % docker compose run --rm terraform -chdir=deploy valida
   -v ~/.aws:/root/.aws:ro \
   terraform -chdir=setup output
 
-test
+!!! https://lrudko-nix.awsapps.com/start
 
 <div align="center">
     <a href="https://londonappdeveloper.com" target="_blank">
