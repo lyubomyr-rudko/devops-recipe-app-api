@@ -7,7 +7,6 @@ resource "aws_db_subnet_group" "main" {
   tags = {
     Name = "${local.prefix}-db-subnet-group"
   }
-
 }
 
 resource "aws_security_group" "rds" {
@@ -25,8 +24,6 @@ resource "aws_security_group" "rds" {
   tags = {
     Name = "${local.prefix}-db-security-group"
   }
-
-
 }
 
 resource "aws_db_instance" "main" {
