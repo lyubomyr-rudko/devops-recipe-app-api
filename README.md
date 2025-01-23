@@ -36,6 +36,18 @@ aws s3 ls --profile AdministratorAccess-183295421958
   -v ~/.aws:/root/.aws:ro \
   terraform -chdir=setup output
 
+% docker compose run --rm \
+  -e AWS_PROFILE=AdministratorAccess-183295421958 \
+  -e AWS_REGION=eu-north-1 \
+  -v ~/.aws:/root/.aws:ro \
+  terraform -chdir=deploy validate
+
+% docker compose run --rm \
+  -e AWS_PROFILE=AdministratorAccess-183295421958 \
+  -e AWS_REGION=eu-north-1 \
+  -v ~/.aws:/root/.aws:ro \
+  terraform -chdir=deploy fmt
+
 !!! https://lrudko-nix.awsapps.com/start
 
 aws iam create-service-linked-role --aws-service-name rds.amazonaws.com --profile AdministratorAccess-183295421958
