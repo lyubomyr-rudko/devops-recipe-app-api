@@ -179,9 +179,11 @@ data "aws_iam_policy_document" "rds" {
     ]
     resources = ["*"]
     condition {
-      test     = "StringEquals"
+      test     = "StringLike"
       variable = "iam:AWSServiceName"
-      values   = ["rds.amazonaws.com"]
+      values = [
+        "rds.amazonaws.com",
+      ]
     }
   }
 }
