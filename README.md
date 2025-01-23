@@ -38,6 +38,9 @@ aws s3 ls --profile AdministratorAccess-183295421958
 
 !!! https://lrudko-nix.awsapps.com/start
 
+aws iam create-service-linked-role --aws-service-name rds.amazonaws.com --profile AdministratorAccess-183295421958
+
+
 db test commit
 
 <div align="center">
