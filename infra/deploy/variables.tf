@@ -12,3 +12,12 @@ variable "contact" {
   description = "The contact person for the project"
   default     = "rudkolg@gmail.com"
 }
+
+variable "db_username" {
+  description = "User name"
+  default     = "recipeapp"
+}
+
+variable "db_password" {
+  description = "Password for the Terraform database"
+}
