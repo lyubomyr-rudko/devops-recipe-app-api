@@ -121,6 +121,9 @@ data "aws_iam_policy_document" "ec2" {
       "ec2:DescribeSubnets",
       "ec2:DescribeVpcAttribute",
       "ec2:DescribeNetworkAcls",
+      "ec2:DescribeAccountAttributes", # Added
+      "ec2:DescribeAvailabilityZones", # Often needed for ALBs
+      "ec2:DescribeInstanceTypes",     # Optional but useful
       "ec2:AssociateRouteTable",
       "ec2:AuthorizeSecurityGroupIngress",
       "ec2:RevokeSecurityGroupEgress",
