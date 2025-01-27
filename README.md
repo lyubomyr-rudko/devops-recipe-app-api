@@ -52,6 +52,12 @@ aws s3 ls --profile AdministratorAccess-183295421958
 
 aws iam create-service-linked-role --aws-service-name rds.amazonaws.com --profile AdministratorAccess-183295421958
 
+aws iam create-service-linked-role --aws-service-name ecs.amazonaws.com --profile AdministratorAccess-183295421958
+
+
+aws iam list-roles --profile AdministratorAccess-183295421958 | grep "AWSServiceRoleForECS"
+
+
 
 db test commit
 
