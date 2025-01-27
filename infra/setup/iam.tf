@@ -359,3 +359,71 @@ resource "aws_iam_user_policy_attachment" "elb" {
   user       = aws_iam_user.cd.name
   policy_arn = aws_iam_policy.elb.arn
 }
+
+#########################
+# Policy for EFS access #
+#########################
+
+data "aws_iam_policy_document" "efs" {
+  statement {
+    effect = "Allow"
+    actions = [
+      "elasticfilesystem:DescribeFileSystems",
+      "elasticfilesystem:DescribeAccessPoints",
+      "elasticfilesystem:DeleteFileSystem",
+      "elasticfilesystem:DeleteAccessPoint",
+      "elasticfilesystem:DescribeMountTargets",
+      "elasticfilesystem:DeleteMountTarget",
+      "elasticfilesystem:DescribeMountTargetSecurityGroups",
+      "elasticfilesystem:DescribeLifecycleConfiguration",
+      "elasticfilesystem:CreateMountTarget",
+      "elasticfilesystem:CreateAccessPoint",
+      "elasticfilesystem:CreateFileSystem",
+      "elasticfilesystem:TagResource",
+    ]
+    resources = ["*"]
+  }
+}
+
+resource "aws_iam_policy" "efs" {
+  name        = "${aws_iam_user.cd.name}-efs"
+  description = "Allow user to manage EFS resources."
+  policy      = data.aws_iam_policy_document.efs.json
+}
+
+resource "aws_iam_user_policy_attachment" "efs" {
+  user       = aws_iam_user.cd.name
+  policy_arn = aws_iam_policy.efs.arn
+}
+
+######################################
+# Policy for elb service-linked role #
+######################################
+
+data "aws_iam_policy_document" "elb_service_linked_role" {
+  statement {
+    effect = "Allow"
+    actions = [
+      "iam:CreateServiceLinkedRole"
+    ]
+    resources = ["*"]
+    condition {
+      test     = "StringEquals"
+      variable = "iam:AWSServiceName"
+      values = [
+        "elasticloadbalancing.amazonaws.com"
+      ]
+    }
+  }
+}
+
+resource "aws_iam_policy" "elb_service_linked_role" {
+  name        = "allow-elb-service-linked-role"
+  description = "Allow creating ELB service-linked role"
+  policy      = data.aws_iam_policy_document.elb_service_linked_role.json
+}
+
+resource "aws_iam_user_policy_attachment" "elb_service_linked_role" {
+  user       = aws_iam_user.cd.name
+  policy_arn = aws_iam_policy.elb_service_linked_role.arn
+}
