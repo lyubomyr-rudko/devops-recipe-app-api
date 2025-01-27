@@ -28,6 +28,12 @@ aws s3 ls --profile AdministratorAccess-183295421958
   -e AWS_PROFILE=AdministratorAccess-183295421958 \
   -e AWS_REGION=eu-north-1 \
   -v ~/.aws:/root/.aws:ro \
+  terraform -chdir=setup validate
+
+% docker compose run --rm \
+  -e AWS_PROFILE=AdministratorAccess-183295421958 \
+  -e AWS_REGION=eu-north-1 \
+  -v ~/.aws:/root/.aws:ro \
   terraform -chdir=setup apply
 
   docker compose run --rm \
@@ -35,6 +41,8 @@ aws s3 ls --profile AdministratorAccess-183295421958
   -e AWS_REGION=eu-north-1 \
   -v ~/.aws:/root/.aws:ro \
   terraform -chdir=setup output
+
+
 
 % docker compose run --rm \
   -e AWS_PROFILE=AdministratorAccess-183295421958 \
@@ -60,6 +68,20 @@ aws iam list-roles --profile AdministratorAccess-183295421958 | grep "AWSService
 
 
 db test commit
+
+ecs exec command
+aws ecs execute-command --region eu-north-1 --cluster raa-staging-cluster --task 3d847182b042426c8c0c964919d649bb --container api --interactive --command "/bin/sh" 
+
+aws ecs execute-command \
+  --region eu-north-1 \
+  --cluster raa-staging-cluster \
+  --task 3d847182b042426c8c0c964919d649bb \
+  --container api \
+  --interactive \
+  --command "/bin/sh" \
+  --profile AdministratorAccess-183295421958
+
+> python manage.py createsuperuser
 
 <div align="center">
     <a href="https://londonappdeveloper.com" target="_blank">
