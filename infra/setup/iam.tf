@@ -121,9 +121,15 @@ data "aws_iam_policy_document" "ec2" {
       "ec2:DescribeSubnets",
       "ec2:DescribeVpcAttribute",
       "ec2:DescribeNetworkAcls",
-      "ec2:DescribeAccountAttributes", # Added
-      "ec2:DescribeAvailabilityZones", # Often needed for ALBs
-      "ec2:DescribeInstanceTypes",     # Optional but useful
+      "ec2:DescribeAccountAttributes",         # Added
+      "ec2:DescribeAvailabilityZones",         # Often needed for ALBs
+      "ec2:DescribeInstanceTypes",             # Optional but useful
+      "ec2:DescribeNetworkInterfaceAttribute", # Added
+      "ec2:CreateNetworkInterface",            # Added
+      "ec2:DescribeNetworkInterfaces",         # Added
+      "ec2:DeleteNetworkInterface",            # Added
+      "ec2:DescribeVpcs",                      # Added
+      "ec2:DescribeSubnets",                   # Added
       "ec2:AssociateRouteTable",
       "ec2:AuthorizeSecurityGroupIngress",
       "ec2:RevokeSecurityGroupEgress",
@@ -171,6 +177,7 @@ data "aws_iam_policy_document" "rds" {
       "rds:ListTagsForResource",
       "rds:ModifyDBInstance",
       "rds:AddTagsToResource",
+      "rds:ModifyDBSubnetGroup"
     ]
     resources = ["*"]
   }
@@ -346,7 +353,8 @@ data "aws_iam_policy_document" "elb" {
       "elasticloadbalancing:CreateTargetGroup",
       "elasticloadbalancing:AddTags",
       "elasticloadbalancing:DescribeTags",
-      "elasticloadbalancing:ModifyListener"
+      "elasticloadbalancing:ModifyListener",
+      "elasticloadbalancing:ModifyTargetGroup"
     ]
     resources = ["*"]
   }
